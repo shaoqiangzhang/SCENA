@@ -1,7 +1,7 @@
 # SCENA
 Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network Affinity
 
-# An example using SCENA CPU version (data set: Biase)
+## An example using SCENA CPU version (data set: Biase)
 
 ```
 #The program need to install parallel,SNFtool,apcluster package.
@@ -55,6 +55,8 @@ tt=result(group1,group2,group3,group4,group5)
 #Numberis the median in max(group1),max(group2),max(group3),max(group4),max(group5)
 res=spectralClustering(tt, c1)
 ```
+
+## An example using SCENA CPU version (data set: Kolodziejczyk)
 
 ```
 install.packages(parallel)
