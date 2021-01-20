@@ -54,6 +54,21 @@ tt=result(group1,group2,group3,group4,group5)
 #Selection of digital
 #Numberis the median in max(group1),max(group2),max(group3),max(group4),max(group5)
 res=spectralClustering(tt, c1)
+library(mclust)
+#Compute ARI
+a<-c(1,1)
+for (i in 1:295) {
+a[i]=1
+}
+for (i in 296:454) {
+a[i]=2
+}
+for (i in 455:704) {
+a[i]=3
+}
+a=as.vector(a)
+b=as.vector(res)
+adjustedRandIndex(a,b)
 ```
 
 ## An example using SCENA CPU version (data set: Kolodziejczyk)
