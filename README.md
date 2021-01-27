@@ -38,9 +38,9 @@ lapply(pkgs,library,character.only=TRUE)
 ```
 Second, we load the dataset (rows are genes and columns are cells)
 
-If the dataset is a txt file:
+If the dataset is a txt file (e.g. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE57249):
 ```
-Express=read.table("Biase3celltypes.txt",header = T,row.names = 1)
+Express=read.table("GSE57249_fpkm.txt",header = T,row.names = 1)
 ```
 
 If the dataset is a csv file:
