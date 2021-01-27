@@ -31,16 +31,16 @@ install.packages("gpuR") ##**the GPU computing package
 
 # 2. Usage examples
 ##  An example for the Biase's dataset
-First, we load the packages
+First, we load the package
 ```
-pkgs<-c('SNFtool','apcluster','mclust','parallel','SCENA')
-lapply(pkgs,library,character.only=TRUE)
+library(SCENA)
 ```
 Second, we load the dataset (rows are genes and columns are cells)
 
 If the dataset is a txt file (e.g. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE57249):
 ```
 Express=read.table("GSE57249_fpkm.txt",header = T,row.names = 1)
+#Express=Express[,1:49] #select a part of cells from the dataset to do clustering
 ```
 
 If the dataset is a csv file:
