@@ -18,14 +18,16 @@ install.packages(SNFtool)
 install.packages(apcluster)
 install.packages(mclust) 
 ```
-## 1.2 Install the SCENA packages
+## 1.2 Install the SCENA package
 
 Option1: download the file SCENAcpu_0.1.0.tar.gz, and install it in R
+
 Option2: 
 ```
 install.packages("devtools")
 devtools::install_github("shaoqiangzhang/SCENA/SCENAcpu")
 ```
+## 1.3 Note: the GPU version can be directly based on the CPU version (see the example) 
 
 ## An example using SCENA CPU version (data set: Biase)
 
