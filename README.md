@@ -56,12 +56,29 @@ for a rds file:
 ```
 Express=
 ```
+Third, propross the input data
+```
+
+```
+Fourth, clustering in parallel
+
+```
+clusterExport(cl,"KNN_SMI",envir = environment())
+clusterExport(cl,"Express",envir = environment())
+parLapply(cl, c(1,2,3,4,5),K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features1)#Parallel clustering
+stopCluster(cl)
+c1=estimated_clusternumber() # estimate the number of clusters
+tt=consensusmatrix( ) # obtain the consensus matrix
+res=spectralClustering(tt, c1) # sectral clustering
+print(res)
+```
+
 
 ## 2.2 An example using SCENA GPU version
 
 
 # Contact info
-Author: Yaxuan Cui, Shaoqiang Zhang
+Author: Yaxuan Cui, Shaoqiang Zhang, Yong Chen
 
 Maintainer: Yaxuan Cui, Shaoqiang Zhang (zhangshaoqiang@tjnu.edu.cn)
 
