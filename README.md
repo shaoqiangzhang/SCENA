@@ -16,20 +16,18 @@ Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network 
 install.packages("parallel")
 install.packages("SNFtool")
 install.packages("apcluster")
-install.packages("mclust") 
+install.packages("mclust") # this package is used to compute ARI
+```
+## 1.2 Install the SCENA package
+```
+install.packages("devtools")
+devtools::install_github("shaoqiangzhang/SCENA")
+```
+## 1.3 If you computer supports GPU programming (optional)
+```
 install.packages("gpuR") ##**the GPU computing package
 ```
 #### ***Note: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
-## 1.2 Install the SCENA package
-
-*Option1*: download the file SCENAcpu*.tar.gz, and install it in R
-
-*Option2*: 
-```
-install.packages("devtools")
-devtools::install_github("shaoqiangzhang/SCENAcpu")
-```
-## 1.3 Note: the GPU version can be directly based on the CPU version (see the example) 
 
 # 2. Usage examples
 ## 2.1 An example using SCENA CPU version (dataset: Biase)
