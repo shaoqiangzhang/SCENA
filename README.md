@@ -60,15 +60,15 @@ Third, preprocess the input data
 ```
 Express=datapreprocess(Express,lognum = 1)  #log=1 is do log-transformation, log=0 is no log-transformation
 ```
-Fourth, clustering in parallel with 5 GPU cores (or/and GPU cores). In the following commands, only one "parLapply" should be called at the same time.
+Fourth, clustering in parallel with 5 GPU cores (or/and GPU cores). In the following commands, only one "parLapply" should be run at the same time.
 
 ```
 detectCores()
-cl <- makeCluster(5)  # employ 5 cpu cores
+cl <- makeCluster(5)  # call 5 cpu cores
 clusterExport(cl,"Express",envir = environment())
-parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features1) ## the command line only using CPU cores
+parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features1) ## the command line only calling CPU cores
 #library(gpuR) 
-#parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features_gpu) ## the command line using CPU+GPU cores
+#parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features_gpu) ## the command line calling CPU+GPU cores
 stopCluster(cl)
 ```
 
