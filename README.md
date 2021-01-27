@@ -26,11 +26,8 @@ devtools::install_github("shaoqiangzhang/SCENA")
 ## If you computer supports GPU programming (optional)
 ```
 install.packages("gpuR") ##**the GPU computing package
-source('ApSpe_GPU.R')
-source('KNN_SMI_GPU.R')
 ```
-#### ***Note 1: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
-#### ***Note 2:   *
+#### ***Note: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
 
 # 2. Usage examples
 ##  An example for the Biase's dataset
@@ -63,7 +60,7 @@ Third, preprocess the input data
 ```
 Express=datapreprocess(Express,lognum = 1)  #log=1 is do log-transformation, log=0 is no log-transformation
 ```
-Fourth, clustering in parallel with 5 GPU cores (or/and GPU cores)
+Fourth, clustering in parallel with 5 GPU cores (or/and GPU cores). In the following commands, only one "parLapply" should be called at the same time.
 
 ```
 detectCores()
