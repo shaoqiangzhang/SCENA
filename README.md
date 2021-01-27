@@ -13,6 +13,12 @@ Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network 
 
 ## download SCENAcpu_0.1.0.tar.gz and install the package in R
 
+## Installation
+```
+install.packages("devtools")
+devtools::install_github("shaoqiangzhang/SCENA/SCENAcpu")
+```
+
 ## An example using SCENA CPU version (data set: Biase)
 
 ```
