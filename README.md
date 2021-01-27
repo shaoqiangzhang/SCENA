@@ -56,7 +56,7 @@ If the dataset is a rds file:(e.g.: https://scrnaseq-public-datasets.s3.amazonaw
 
 ```
 library(SingleCellExperiment)
-biase<-readRDS("E:/biase.rds")
+biase<-readRDS("biase.rds")
 Express=biase@assays$data$normcounts
 ```
 Third, preprocess the input data
