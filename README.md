@@ -4,7 +4,7 @@ SCENA is a R package for unsupervised clustering of single cell RNA-Seq data
 
 Version: 1.0.1
 
-Depends: R(>3.3)
+Depends: R(>4.0)
 
 Import packages: parallel, SNFtool, gpuR, apcluster, mclust
 
@@ -16,9 +16,10 @@ Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network 
 install.packages("parallel")
 install.packages("SNFtool")
 install.packages("apcluster")
-install.packages("gpuR")
+install.packages("gpuR") 
 install.packages("mclust") 
 ```
+#### Note: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed in Windows system.
 ## 1.2 Install the SCENA package
 
 Option1: download the file SCENAcpu_0.1.0.tar.gz, and install it in R
