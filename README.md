@@ -52,7 +52,7 @@ If the dataset is a csv file:
 Express=read.csv("Biase3celltypes.csv",header = T,row.names = 1)
 ```
 
-If the dataset is a rds file:
+If the dataset is a rds file:(e.g.: https://scrnaseq-public-datasets.s3.amazonaws.com/scater-objects/biase.rds)
 
 ```
 library(SingleCellExperiment)
