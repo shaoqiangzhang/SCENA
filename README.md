@@ -16,6 +16,7 @@ Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network 
 install.packages("parallel")
 install.packages("SNFtool")
 install.packages("apcluster")
+install.packages("gpuR")
 install.packages("mclust") 
 ```
 ## 1.2 Install the SCENA package
