@@ -22,12 +22,12 @@ install.packages("mclust")
 #### **Note: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.
 ## 1.2 Install the SCENA package
 
-Option1: download the file SCENAcpu_0.1.0.tar.gz, and install it in R
+*Option1*: download the file SCENAcpu*.tar.gz, and install it in R
 
-Option2: 
+*Option2*: 
 ```
 install.packages("devtools")
-devtools::install_github("shaoqiangzhang/SCENA/SCENAcpu")
+devtools::install_github("shaoqiangzhang/SCENAcpu")
 ```
 ## 1.3 Note: the GPU version can be directly based on the CPU version (see the example) 
 
@@ -35,32 +35,32 @@ devtools::install_github("shaoqiangzhang/SCENA/SCENAcpu")
 ## 2.1 An example using SCENA CPU version (dataset: Biase)
 First, we load the packages
 ```
-library(SNFtool)
-library(parallel)
-library(apcluster)
-library(SCENAcpu)
+pkgs<-c('SNFtool','apcluster','mclust','parallel','SCENAcpu')
+lapply(pkgs,library,character.only=TRUE)
 ```
-Second, we load the dataset (rows are genes, while columns are cells)
+Second, we load the dataset (rows are genes and columns are cells)
 
-for a txt file:
+If the dataset is a txt file:
 ```
-Express=read.table("Biase3celltypes.txt",header = T, comment.char='!',stringsAsFactors = FALSE,quote = "",sep='\t')
+Express=read.table("Biase3celltypes.txt",header = T,row.names = 1)
 ```
 
-for a csv file:
+If the dataset is a csv file:
 
 ```
-Express=read.csv
+Express=read.csv("Biase3celltypes.csv",header = T,row.names = 1)
 ```
 
-for a rds file:
+If the dataset is a rds file:
 
 ```
-Express=
+library(SingleCellExperiment)
+biase<-readRDS("E:/biase.rds")
+Express=biase@assays$data$normcounts
 ```
 Third, preprocess the input data
 ```
-Express=prepocess(Express, log=T) #log=T is do log-transformation, log=F is no log-transformation
+Express=datapreprocess(Express,lognum = 1)  #log=1 is do log-transformation, log=0 is no log-transformation
 ```
 Fourth, clustering in parallel
 
