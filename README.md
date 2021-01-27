@@ -56,9 +56,9 @@ for a rds file:
 ```
 Express=
 ```
-Third, propross the input data
+Third, preprocess the input data
 ```
-
+Express=prepocess(Express, log=T) #log=T is do log-transformation, log=F is no log-transformation
 ```
 Fourth, clustering in parallel
 
