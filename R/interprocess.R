@@ -1,5 +1,9 @@
 
 datapreprocess<-function(Express,lognum) {
+  library(SNFtool)
+  library(apcluster)
+  library(parallel)
+  
   Express=apply(Express,2,as.numeric)
   len=ncol(Express)
   Express=Express[apply(Express,1,function(x) sum(x>1)>len*0.05),]
