@@ -13,10 +13,10 @@ Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network 
 # 1. Installation
 ## 1.1 Start by installing the necessary packages  
 ```
-install.packages(parallel)
-install.packages(SNFtool)
-install.packages(apcluster)
-install.packages(mclust) 
+install.packages("parallel")
+install.packages("SNFtool")
+install.packages("apcluster")
+install.packages("mclust") 
 ```
 ## 1.2 Install the SCENA package
 
