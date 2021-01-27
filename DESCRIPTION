@@ -1,4 +1,4 @@
-Package: SCENAcpu
+Package: SCENA
 Type: Package
 Title:  Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network Affinity
 Version: 1.0.1
