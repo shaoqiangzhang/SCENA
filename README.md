@@ -6,14 +6,22 @@ Version: 1.0.1
 
 Depends: R(>3.3)
 
-Import packages: parallel, SNFtool, gpuR, apcluster
+Import packages: parallel, SNFtool, gpuR, apcluster, mclust
 
 Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network Affinity, to be published. 
 
+# 1. Installation
+## 1.1 Start by installing the necessary packages  
+```
+install.packages(parallel)
+install.packages(SNFtool)
+install.packages(apcluster)
+install.packages(mclust) 
+```
+## 1.2 Install the SCENA packages
 
-## download SCENAcpu_0.1.0.tar.gz and install the package in R
-
-## Installation
+Option1: download the file SCENAcpu_0.1.0.tar.gz, and install it in R
+Option2: 
 ```
 install.packages("devtools")
 devtools::install_github("shaoqiangzhang/SCENA/SCENAcpu")
