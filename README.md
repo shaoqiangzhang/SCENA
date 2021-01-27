@@ -1,5 +1,15 @@
-# SCENA
-Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network Affinity
+# SCENA (Single-cell Clustering by Enhancing Network Affinity)
+
+SCENA is a R package for unsupervised clustering of single cell RNA-Seq data
+
+Version: 1.0.1
+
+Depends: R(>3.3)
+
+Import packages: parallel, SNFtool, gpuR, apcluster
+
+Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network Affinity, to be published. 
+
 
 ## download SCENAcpu_0.1.0.tar.gz and install the package in R
 
