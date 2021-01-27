@@ -16,10 +16,10 @@ Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network 
 install.packages("parallel")
 install.packages("SNFtool")
 install.packages("apcluster")
-install.packages("gpuR") ##**the GPU computing package
 install.packages("mclust") 
+install.packages("gpuR") ##**the GPU computing package
 ```
-#### **Note: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.
+#### ***Note: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
 ## 1.2 Install the SCENA package
 
 *Option1*: download the file SCENAcpu*.tar.gz, and install it in R
@@ -65,16 +65,19 @@ Express=datapreprocess(Express,lognum = 1)  #log=1 is do log-transformation, log
 Fourth, clustering in parallel
 
 ```
+detectCores()
+cl <- makeCluster(5) ## employ 5 cpu cores
 clusterExport(cl,"KNN_SMI",envir = environment())
 clusterExport(cl,"Express",envir = environment())
-parLapply(cl, c(1,2,3,4,5),K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features1)#Parallel clustering
+parLapply(cl, c(1:5),K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features1) ## parallel clustering with parameter settings
 stopCluster(cl)
-c1=estimated_clusternumber() # estimate the number of clusters
-tt=consensusmatrix( ) # obtain the consensus matrix
-res=spectralClustering(tt, c1) # sectral clustering
-print(res)
 ```
+*##Note: K is the number of K-nearest neighbors; T is the number of matrix iterations, X1~X5 are top number of selected features.
 
+Fifth, do consensus clustering
+```
+b=spectralClu()
+```
 
 ## 2.2 An example using SCENA GPU version
 
