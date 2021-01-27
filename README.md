@@ -69,10 +69,10 @@ detectCores()
 cl <- makeCluster(5) ## employ 5 cpu cores
 clusterExport(cl,"KNN_SMI",envir = environment())
 clusterExport(cl,"Express",envir = environment())
-parLapply(cl, c(1:5),K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features1) ## parallel clustering with parameter settings
+parLapply(cl, c(1:5),K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features1) ## 
 stopCluster(cl)
 ```
-*##Note: K is the number of K-nearest neighbors; T is the number of matrix iterations, X1~X5 are top number of selected features.
+*##Note: K is the number of K-nearest neighbors; T is the number of matrix iterations, X1~X5 are top number of selected features.*
 
 Fifth, do consensus clustering
 ```
