@@ -27,7 +27,7 @@ devtools::install_github("shaoqiangzhang/SCENA")
 ```
 install.packages("gpuR") ## see Note1 
 ```
-#### *Note1: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
+*##Note1: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
 
 # 2. Usage examples
 ##  An example for the Biase's dataset
@@ -81,7 +81,6 @@ source('./ApSpe_GPU.R')## see Note 3
 cl <- makeCluster(5)
 parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,select_features_GPU)
 stopCluster(cl)
-b=consClust()
 ```
 *##Note3: Because the GPU code cannot be called from the installed SCENA package directly, please copy it to your working path and run it using ’source'.*
 
