@@ -68,7 +68,6 @@ Fourth, clustering in parallel with 5 CPU cores.
 ```
 detectCores()
 cl <- makeCluster(5)  # call 5 cpu cores
-clusterExport(cl,"Express",envir = environment())
 parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,select_features)##see Note2
 stopCluster(cl)
 ```
