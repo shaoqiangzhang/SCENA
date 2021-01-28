@@ -30,15 +30,15 @@ install.packages("gpuR") ## see Note1
 *##__Note1__: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
 
 # 2. Usage examples
-##  An example for the Biase's dataset
-You can download some scRNA-seq datasets from https://github.com/shaoqiangzhang/scRNAseq_Datasets .
+##  An example for the Biase's dataset (GSE57249)
+You can download the Biase's dataset and some other scRNA-seq datasets from https://github.com/shaoqiangzhang/scRNAseq_Datasets .
 
 **First**, we load the package and the dataset (rows are genes and columns are cells)
 
-If the dataset is a txt file (e.g. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE57249):
+If the dataset is a txt file:
 ```
 library(SCENA)
-Express=read.table("GSE57249_fpkm.txt",header = T,row.names = 1)
+Express=read.table("Biase3celltypes.txt",header = T,row.names = 1)
 #Express=Express[,1:49] #select a part of cells from the dataset to do clustering
 ```
 If the dataset is a csv file:
@@ -46,7 +46,7 @@ If the dataset is a csv file:
 library(SCENA)
 Express=read.csv("Biase3celltypes.csv",header = T,row.names = 1)
 ```
-If the dataset is a rds file:(e.g.: https://scrnaseq-public-datasets.s3.amazonaws.com/scater-objects/biase.rds)
+If the dataset is a rds file:
 ```
 library(SCENA)
 library(SingleCellExperiment)
