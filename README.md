@@ -33,37 +33,32 @@ install.packages("gpuR") ## see Note1
 ##  An example for the Biase's dataset
 You can download some scRNA-seq datasets from https://github.com/shaoqiangzhang/scRNAseq_Datasets .
 
-**First**, we load the package
-```
-library(SCENA)
-```
-**Second**, we load the dataset (rows are genes and columns are cells)
+**First**, we load the package and the dataset (rows are genes and columns are cells)
 
 If the dataset is a txt file (e.g. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE57249):
 ```
+library(SCENA)
 Express=read.table("GSE57249_fpkm.txt",header = T,row.names = 1)
 #Express=Express[,1:49] #select a part of cells from the dataset to do clustering
 ```
-
 If the dataset is a csv file:
-
 ```
+library(SCENA)
 Express=read.csv("Biase3celltypes.csv",header = T,row.names = 1)
 ```
-
 If the dataset is a rds file:(e.g.: https://scrnaseq-public-datasets.s3.amazonaws.com/scater-objects/biase.rds)
-
 ```
+library(SCENA)
 library(SingleCellExperiment)
 biase<-readRDS("biase.rds")
 Express=biase@assays$data$normcounts
 #Express=Express[,1:49] #select a part of cells from the dataset to do clustering
 ```
-**Third**, preprocess the input data
+**Second**, preprocess the input data
 ```
 Express=datapreprocess(Express,lognum = 1)  #log=1 is do log-transformation, log=0 is no log-transformation
 ```
-**Fourth**, clustering in parallel with 5 CPU cores as follows. 
+**Third**, clustering in parallel with 5 CPU cores as follows. 
 
 ```
 detectCores()
@@ -85,12 +80,10 @@ stopCluster(cl)
 ```
 *##__Note3__: Because the GPU code cannot be called from the installed SCENA package directly, please copy it to your working path and run it using ’source'.*
 
-**Fifth**, do consensus clustering
+**Fourth**, do consensus clustering
 ```
 b=consClust()
 ```
-
-
 
 # Contact info
 Authors: Yaxuan Cui, Shaoqiang Zhang, Yong Chen
