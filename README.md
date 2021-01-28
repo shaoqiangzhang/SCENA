@@ -25,9 +25,9 @@ devtools::install_github("shaoqiangzhang/SCENA")
 ```
 ## If you computer supports GPU programming (optional)
 ```
-install.packages("gpuR") ##**the GPU computing package
+install.packages("gpuR") ## see Note1 
 ```
-#### ***Note1: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
+#### *Note1: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
 
 # 2. Usage examples
 ##  An example for the Biase's dataset
@@ -55,6 +55,7 @@ If the dataset is a rds file:(e.g.: https://scrnaseq-public-datasets.s3.amazonaw
 library(SingleCellExperiment)
 biase<-readRDS("biase.rds")
 Express=biase@assays$data$normcounts
+#Express=Express[,1:49] #select a part of cells from the dataset to do clustering
 ```
 Third, preprocess the input data
 ```
@@ -76,7 +77,7 @@ If your computer supports GPU computing, you can clustering in parallel with CPU
 
 ```
 library(gpuR)
-source('./ApSpe_GPU.R')## Note 3
+source('./ApSpe_GPU.R')## see Note 3
 cl <- makeCluster(5)
 parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,select_features_GPU)
 stopCluster(cl)
@@ -92,8 +93,8 @@ b=consClust()
 
 
 # Contact info
-Author: Yaxuan Cui, Shaoqiang Zhang, Yong Chen
+Authors: Yaxuan Cui, Shaoqiang Zhang, Yong Chen
 
-Maintainer: Yaxuan Cui, Shaoqiang Zhang (zhangshaoqiang@tjnu.edu.cn)
+Maintainers: Yaxuan Cui, Shaoqiang Zhang (zhangshaoqiang@tjnu.edu.cn)
 
 
