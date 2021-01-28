@@ -60,19 +60,29 @@ Third, preprocess the input data
 ```
 Express=datapreprocess(Express,lognum = 1)  #log=1 is do log-transformation, log=0 is no log-transformation
 ```
-Fourth, clustering in parallel with 5 GPU cores (or/and GPU cores). In the following commands, only one "parLapply" should be run at the same time.
+Fourth, clustering in parallel with 5 CPU cores. 
 
 ```
 detectCores()
 cl <- makeCluster(5)  # call 5 cpu cores
 clusterExport(cl,"Express",envir = environment())
-parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,select_features)##see Note1
-#library(gpuR) 
-#parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,select_features_gpu) ## see Note2
+parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,select_features)##see Note2
 stopCluster(cl)
 ```
 
-*##Note: K is the number of K-nearest neighbors; T is the number of matrix iterations, X1~X5 are top number of selected features.*
+*##Note2: K is the number of K-nearest neighbors; T is the number of matrix iterations, X1~X5 are top number of selected features.*
+
+If your computer supports GPU computing, you can clustering in parallel with CPU+GPU.
+
+```
+library(gpuR)
+source('./ApSpe_GPU.R')## Note 3
+cl <- makeCluster(5)
+parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,select_features_GPU)
+stopCluster(cl)
+b=consClust()
+```
+*##Note3: Because the GPU code cannot be called from the installed SCENA package directly, please copy it to your working path and run it using ’source'.*
 
 Fifth, do consensus clustering
 ```
