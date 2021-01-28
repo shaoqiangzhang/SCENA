@@ -27,17 +27,17 @@ devtools::install_github("shaoqiangzhang/SCENA")
 ```
 install.packages("gpuR") ## see Note1 
 ```
-*##Note1: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
+*##__Note1__: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
 
 # 2. Usage examples
 ##  An example for the Biase's dataset
 You can download some scRNA-seq datasets from https://github.com/shaoqiangzhang/scRNAseq_Datasets .
 
-First, we load the package
+**First**, we load the package
 ```
 library(SCENA)
 ```
-Second, we load the dataset (rows are genes and columns are cells)
+**Second**, we load the dataset (rows are genes and columns are cells)
 
 If the dataset is a txt file (e.g. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE57249):
 ```
@@ -59,11 +59,11 @@ biase<-readRDS("biase.rds")
 Express=biase@assays$data$normcounts
 #Express=Express[,1:49] #select a part of cells from the dataset to do clustering
 ```
-Third, preprocess the input data
+**Third**, preprocess the input data
 ```
 Express=datapreprocess(Express,lognum = 1)  #log=1 is do log-transformation, log=0 is no log-transformation
 ```
-Fourth, clustering in parallel with 5 CPU cores. 
+**Fourth**, clustering in parallel with 5 CPU cores as follows. 
 
 ```
 detectCores()
@@ -72,9 +72,9 @@ parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,
 stopCluster(cl)
 ```
 
-*##Note2: K is the number of K-nearest neighbors; T is the number of matrix iterations, X1~X5 are top number of selected features.*
+*##__Note2__: K is the number of K-nearest neighbors; T is the number of matrix iterations, X1~X5 are top number of selected features.*
 
-If your computer supports GPU computing, you can clustering in parallel with CPU+GPU.
+Alternatively, if your computer supports GPU computing, you can do clustering in parallel with CPU+GPU as follows.
 
 ```
 library(gpuR)
@@ -83,9 +83,9 @@ cl <- makeCluster(5)
 parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,select_features_GPU)
 stopCluster(cl)
 ```
-*##Note3: Because the GPU code cannot be called from the installed SCENA package directly, please copy it to your working path and run it using ’source'.*
+*##__Note3__: Because the GPU code cannot be called from the installed SCENA package directly, please copy it to your working path and run it using ’source'.*
 
-Fifth, do consensus clustering
+**Fifth**, do consensus clustering
 ```
 b=consClust()
 ```
