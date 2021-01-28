@@ -39,7 +39,6 @@ If the dataset is a txt file:
 ```
 library(SCENA)
 Express=read.table("Biase3celltypes.txt",header = T,row.names = 1)
-#Express=Express[,1:49] #select a part of cells from the dataset to do clustering
 ```
 If the dataset is a csv file:
 ```
