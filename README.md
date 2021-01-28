@@ -31,6 +31,8 @@ install.packages("gpuR") ## see Note1
 
 # 2. Usage examples
 ##  An example for the Biase's dataset
+You can download some scRNA-seq datasets from https://github.com/shaoqiangzhang/scRNAseq_Datasets .
+
 First, we load the package
 ```
 library(SCENA)
