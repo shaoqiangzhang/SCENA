@@ -4,7 +4,7 @@ SCENA is a R package for unsupervised clustering of single cell RNA-Seq data
 
 Version: 1.0.1
 
-Depends: R(>4.0)
+Depends: R(>3.6)
 
 Import packages: parallel, SNFtool, gpuR, apcluster, mclust
 
