@@ -1,7 +1,4 @@
-
-
-
-select_features_gpu=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250){
+select_features_gpu=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express=Express){
   library(SNFtool)
   library(apcluster)
   alpha=0.5
