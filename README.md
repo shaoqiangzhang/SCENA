@@ -27,7 +27,7 @@ devtools::install_github("shaoqiangzhang/SCENA")
 ```
 install.packages("gpuR") ##**the GPU computing package
 ```
-#### ***Note: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
+#### ***Note1: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
 
 # 2. Usage examples
 ##  An example for the Biase's dataset
@@ -66,9 +66,9 @@ Fourth, clustering in parallel with 5 GPU cores (or/and GPU cores). In the follo
 detectCores()
 cl <- makeCluster(5)  # call 5 cpu cores
 clusterExport(cl,"Express",envir = environment())
-parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features1) ## the command line only calling CPU cores
+parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,select_features)##see Note1
 #library(gpuR) 
-#parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, select_features_gpu) ## the command line calling CPU+GPU cores
+#parLapply(cl,1:5,K=10,T=50,X1=200,X2=400,X3=600,X4=800,X5=1000, Express=Express,select_features_gpu) ## see Note2
 stopCluster(cl)
 ```
 
