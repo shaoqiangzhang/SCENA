@@ -1,5 +1,5 @@
 
-datapreprocess<-function(Express,lognum) {
+datapreprocess<-function(Express,log=F) {
   library(SNFtool)
   library(apcluster)
   library(parallel)
@@ -8,7 +8,7 @@ datapreprocess<-function(Express,lognum) {
   len=ncol(Express)
   Express=Express[apply(Express,1,function(x) sum(x>1)>len*0.05),]
   Express=Express[apply(Express,1,function(x) sum(x>1)<len*0.95),]
-  if(lognum==1){
+  if(log==TRUE){
     Express=log2(Express+1)
   }
   return(Express)
