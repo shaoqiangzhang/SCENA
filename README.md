@@ -31,7 +31,7 @@ install.packages("gpuR") ## see Note1
 
 # 2. Usage examples
 ##  An example for the Biase's dataset (GSE57249)
-You can download the Biase's dataset and some other scRNA-seq datasets from https://github.com/shaoqiangzhang/scRNAseq_Datasets .
+You can download the Biase's dataset and some other scRNA-seq datasets from https://github.com/shaoqiangzhang/scRNAseq_Datasets to test SCENA.
 
 **First**, load the package and a dataset (rows are genes and columns are cells)
 
@@ -55,7 +55,7 @@ Express=biase@assays$data$normcounts
 ```
 **Second**, preprocess the input data as follows.
 ```
-Express=datapreprocess(Express,log=T)  #log=T is do log-transformation, log=F is no log-transformation
+Express=datapreprocess(Express,log=T)  #log=T is to do log-transformation, log=F is no log-transformation
 ```
 **Third**, do clustering in parallel with 5 CPU cores as follows. 
 
