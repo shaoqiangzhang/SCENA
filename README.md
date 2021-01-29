@@ -53,11 +53,11 @@ biase<-readRDS("biase.rds")
 Express=biase@assays$data$normcounts
 #Express=Express[,1:49] #select a part of cells from the dataset to do clustering
 ```
-**Second**, preprocess the input data
+**Second**, preprocess the input data as follows.
 ```
 Express=datapreprocess(Express,log=T)  #log=T is do log-transformation, log=F is no log-transformation
 ```
-**Third**, clustering in parallel with 5 CPU cores as follows. 
+**Third**, do clustering in parallel with 5 CPU cores as follows. 
 
 ```
 detectCores()
@@ -79,7 +79,7 @@ stopCluster(cl)
 ```
 *##__Note3__: Because the GPU code cannot be called from the installed SCENA package directly, please copy it to your working path and run it using ’source'.*
 
-**Fourth**, do consensus clustering 
+**Fourth**, do consensus clustering as follows. 
 ```
 cc=consClust() #no parameters if using the predicted number of clusters
 ```
@@ -88,11 +88,11 @@ or
 cc=consClust(3) #set the number of clusters = 3
 ```
 ### Further analysis
-#### Plot a scatter diagram with PCA
+#### Plot a scatter diagram with PCA as follows.
 ```
 plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 ```
-#### Compute Adjusted Rand Index (ARI) between preset and predicted cell types
+#### Compute Adjusted Rand Index (ARI) between preset and predicted cell types as follows.
 ```
 library(mclust)
 presetlabel=substring(colnames(Express),1,4) ## extract cell label from column names  
