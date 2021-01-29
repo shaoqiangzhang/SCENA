@@ -90,10 +90,14 @@ cc=consClust(3) #set the number of clusters = 3
 ### Further analysis
 #### Plot a scatter diagram with PCA
 ```
-plotPCA(Express,cc) # 'Express' is expression matrix, 'cc' is label of clusters
+plotPCA(Express,cc) #  'cc' is label of predicted clusters
 ```
-#### Compute Ajusted Rand Index (ARI)
-
+#### Compute Adjusted Rand Index (ARI) between preset and predicted cell types
+```
+library(mclust)
+presetlabel=substring(colnames(Express),1,4) ## extract the label from the column(cell) names  
+adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label
+```
 
 
 # Contact info
