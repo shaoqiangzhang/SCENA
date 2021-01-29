@@ -33,7 +33,7 @@ install.packages("gpuR") ## see Note1
 ##  An example for the Biase's dataset (GSE57249)
 You can download the Biase's dataset and some other scRNA-seq datasets from https://github.com/shaoqiangzhang/scRNAseq_Datasets .
 
-**First**, we load the package and the dataset (rows are genes and columns are cells)
+**First**, load the package and a dataset (rows are genes and columns are cells)
 
 If the dataset is a txt file:
 ```
@@ -90,12 +90,12 @@ cc=consClust(3) #set the number of clusters = 3
 ### Further analysis
 #### Plot a scatter diagram with PCA
 ```
-plotPCA(Express,cc) #  'cc' is label of predicted clusters
+plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 ```
 #### Compute Adjusted Rand Index (ARI) between preset and predicted cell types
 ```
 library(mclust)
-presetlabel=substring(colnames(Express),1,4) ## extract the label from the column(cell) names  
+presetlabel=substring(colnames(Express),1,4) ## extract cell label from column names  
 adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label
 ```
 
