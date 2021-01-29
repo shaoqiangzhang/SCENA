@@ -79,14 +79,22 @@ stopCluster(cl)
 ```
 *##__Note3__: Because the GPU code cannot be called from the installed SCENA package directly, please copy it to your working path and run it using ’source'.*
 
-**Fourth**, do consensus clustering
+**Fourth**, do consensus clustering 
 ```
-b=consClust() #no parameters if using the predicted number of clusters
+cc=consClust() #no parameters if using the predicted number of clusters
 ```
 or
 ```
-b=consClust(3) #set the number of clusters = 3
+cc=consClust(3) #set the number of clusters = 3
 ```
+### Further analysis
+#### Plot a scatter diagram with PCA
+```
+plotPCA(Express,cc) # 'Express' is expression matrix, 'cc' is label of clusters
+```
+#### Compute Ajusted Rand Index (ARI)
+
+
 
 # Contact info
 Authors: Yaxuan Cui, Shaoqiang Zhang, Yong Chen
