@@ -55,7 +55,7 @@ Express=biase@assays$data$normcounts
 ```
 **Second**, preprocess the input data
 ```
-Express=datapreprocess(Express,lognum = 1)  #log=1 is do log-transformation, log=0 is no log-transformation
+Express=datapreprocess(Express,log=T)  #log=T is do log-transformation, log=F is no log-transformation
 ```
 **Third**, clustering in parallel with 5 CPU cores as follows. 
 
@@ -81,7 +81,11 @@ stopCluster(cl)
 
 **Fourth**, do consensus clustering
 ```
-b=consClust()
+b=consClust() #no parameters if using the predicted number of clusters
+```
+or
+```
+b=consClust(3) #set the number of clusters = 3
 ```
 
 # Contact info
