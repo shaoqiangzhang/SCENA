@@ -37,6 +37,6 @@ plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 
 ##compute ARI as follows:
 library(mclust)
-presetlabel=substring(colnames(Express),1,5) ## preset 3 cell types each containing 9 cells, 20 cells, 27 cells,respectively.
+presetlabel=substring(colnames(Express),1,5) ## read the column names as preset cell types
 adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label
 

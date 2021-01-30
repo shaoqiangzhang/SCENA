@@ -14,7 +14,7 @@ furl<-"https://s3.amazonaws.com/scrnaseq-public-datasets/manual-data/yan/nsmb.26
 download.file(furl,destfile="./nsmb.2660-S2.csv")
 Express=read.csv("./nsmb.2660-S2.csv", header = T,row.names = 1)
 
-
+##data preprocessing
 Express=Express[,2:91] #select 90 cells
 Express=datapreprocess(Express,log=T)  #log=T is to do log-transformation, log=F is no log-transformation
 
@@ -30,7 +30,7 @@ cc=consClust() #no parameters if using the predicted number of clusters
 #cc=consClust(6) #set the number of clusters = 6
 
 ##plot scatter graph with PCA
-plotPCA(Express,cc) #  'cc' is label of the predicted clusters
+#plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 
 ##compute ARI as follows:
 library(mclust)

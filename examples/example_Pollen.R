@@ -1,4 +1,4 @@
-###An example for running SCENA on the Goolam's dataset (download from EBI ArrayExpress)
+###An example for running SCENA on Pollen's dataset 
 install.packages("parallel")
 install.packages("SNFtool")
 install.packages("apcluster")
@@ -6,18 +6,15 @@ install.packages("mclust")
 install.packages("devtools")
 devtools::install_github("shaoqiangzhang/SCENA")
 
+
 library(SCENA)
 
-##download data from EBI and read file
-furl<-"https://www.ebi.ac.uk/arrayexpress/files/E-MTAB-3321/E-MTAB-3321.processed.1.zip"
-download.file(furl,destfile="./E-MTAB-3321.processed.1.zip")
-Express=read.table(unz("E-MTAB-3321.processed.1.zip",filename="Goolam_et_al_2015_count_table.tsv"),header = T,row.names = 1)
-
-##read scRNA-seq expression file if you have downloaded and unzipped the file in advance
-#Express=read.table("./Goolam_et_al_2015_count_table.tsv",header = T,row.names = 1)
+##download data and read file
+furl<-"https://s3.amazonaws.com/scrnaseq-public-datasets/manual-data/pollen/NBT_hiseq_linear_tpm_values.txt"
+download.file(furl,destfile="./NBT_hiseq_linear_tpm_values.txt")
+Express=read.table("./NBT_hiseq_linear_tpm_values.txt", header = T,row.names = 1)
 
 ##data preprocessing
-Express=Express[1:41389,]
 Express=datapreprocess(Express,log=T)  #log=T is to do log-transformation, log=F is no log-transformation
 
 ## do clustering in parallel with 5 cpu cores
@@ -29,13 +26,13 @@ stopCluster(cl)
 
 ##do consensus clustering
 cc=consClust() #no parameters if using the predicted number of clusters
-#cc=consClust(6) #set the number of clusters = 6
+#cc=consClust(11) #set the number of clusters = 11
 
 ##plot scatter graph with PCA
 plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 
 ##compute ARI as follows:
 library(mclust)
-presetlabel=rep(c(2,4,8,16,32,8,2,4),c(6,40,16,6,6,16,10,24)) ## preset 5 cell types
-adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label  ##ARI=0.8479858
-
+presetlabel=substring(colnames(Express),1,5)## read the column names as preset cell types
+#presetlabel=rep(c(1:11),c(22,17,11,37,31,54,24,40,24,15,26)) ## preset 11 cell types 
+adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label 
