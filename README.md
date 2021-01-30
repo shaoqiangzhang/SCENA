@@ -30,28 +30,20 @@ install.packages("gpuR") ## see Note1
 *##__Note1__: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
 
 # 2. Usage examples
-##  An example for the Biase's dataset (GSE57249)
-You can download the Biase's dataset and some other scRNA-seq datasets from https://github.com/shaoqiangzhang/scRNAseq_Datasets to test SCENA.
+##  An example for clustering dataset GSE57249
 
-**First**, load the package and a dataset (rows are genes and columns are cells)
+**First**, load the package, download the dataset (rows are genes and columns are cells) from GEO website, and read file.
 
-If the dataset is a txt file:
 ```
 library(SCENA)
-Express=read.table("Biase3celltypes.txt",header = T,row.names = 1)
+furl<-"https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE57249&format=file&file=GSE57249%5Ffpkm%2Etxt%2Egz"
+download.file(furl,destfile="./GSE57249_fpkm.txt.gz")
+Express=read.table(gzfile("GSE57249_fpkm.txt.gz"),header = T,row.names = 1)
 ```
-If the dataset is a csv file:
-```
-library(SCENA)
-Express=read.csv("Biase3celltypes.csv",header = T,row.names = 1)
-```
-If the dataset is a rds file:
+If you have already downloaded and unzipped the compressed file, you can read the txt file directly: 
 ```
 library(SCENA)
-library(SingleCellExperiment)
-biase<-readRDS("biase.rds")
-Express=biase@assays$data$normcounts
-#Express=Express[,1:49] #select a part of cells from the dataset to do clustering
+Express=read.table("./GSE57249_fpkm.txt",header = T,row.names = 1)
 ```
 **Second**, preprocess the input data as follows.
 ```
@@ -95,7 +87,7 @@ plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 #### Compute Adjusted Rand Index (ARI) between preset and predicted cell types as follows.
 ```
 library(mclust)
-presetlabel=substring(colnames(Express),1,4) ## extract cell label from column names  
+presetlabel=rep(c(1:3),c(9,20,27)) ## preset 3 cell types each containing 9 cells, 20 cells, 27 cells,respectively.
 adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label
 ```
 
