@@ -17,6 +17,7 @@ Express=read.table(unz("E-MTAB-3321.processed.1.zip",filename="Goolam_et_al_2015
 #Express=read.table("./Goolam_et_al_2015_count_table.tsv",header = T,row.names = 1)
 
 ##data preprocessing
+Express=Express[1:41389,]
 Express=datapreprocess(Express,log=T)  #log=T is to do log-transformation, log=F is no log-transformation
 
 ## do clustering in parallel with 5 cpu cores
@@ -35,6 +36,6 @@ plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 
 ##compute ARI as follows:
 library(mclust)
-presetlabel=substring(colnames(Express),2,5) ## extract cell label from column names 
+presetlabel=rep(c(2,4,8,16,32,8,2,4),c(6,40,16,6,6,16,10,24)) ## preset 5 cell types
 adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label
 
