@@ -45,6 +45,7 @@ Express=read.csv("./nsmb.2660-S2.csv", header = T,row.names = 1) ##see Note 2
 
 **Second**, preprocess the input data as follows.
 ```
+Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
 Express=datapreprocess(Express,log=T)  #log=T is to do log-transformation, log=F is no log-transformation
 ```
 **Third**, do clustering in parallel with 5 CPU cores as follows. 
