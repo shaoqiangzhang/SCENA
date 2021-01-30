@@ -8,7 +8,7 @@ devtools::install_github("shaoqiangzhang/SCENA")
 
 library(SCENA)
 
-##download data from GEO and read file
+##download data from EBI and read file
 furl<-"https://www.ebi.ac.uk/arrayexpress/files/E-MTAB-3321/E-MTAB-3321.processed.1.zip"
 download.file(furl,destfile="./E-MTAB-3321.processed.1.zip")
 Express=read.table(unz("E-MTAB-3321.processed.1.zip",filename="Goolam_et_al_2015_count_table.tsv"),header = T,row.names = 1)
