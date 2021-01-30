@@ -30,7 +30,8 @@ install.packages("gpuR") ## see Note1
 *##__Note1__: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
 
 # 2. Usage examples
-## There are three demos with detailed steps in the "examples" folder.  An example for the dataset GSE57249 is described as follows.
+**There are three detailed examples (three datasets from EBI and GEO) in the "examples" folder. You can directly run the three examples in R.**
+## An example for the Biase's dataset is described as follows.
 
 **First**, load the package, download the dataset (rows are genes and columns are cells) from GEO website, and read file.
 
