@@ -32,7 +32,7 @@ install.packages("gpuR") ## see Note1
 # 2. Usage examples
 **There are several detailed examples in the "examples" folder. You can directly run these examples in R.**
 
-**The "data" folder includes the download URL of some datasets** 
+**The "data" folder includes the download URLs of some datasets** 
 
 ## An example for Yan's dataset is described as follows.
 
