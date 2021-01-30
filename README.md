@@ -41,7 +41,7 @@ furl<-"https://s3.amazonaws.com/scrnaseq-public-datasets/manual-data/yan/nsmb.26
 download.file(furl,destfile="./nsmb.2660-S2.csv")
 Express=read.csv("./nsmb.2660-S2.csv", header = T,row.names = 1) ##see Note 2
 ```
-*##__Note2__: If the file suffix is ".txt" or ".tsv" , please use "read.table" instead of "read.csv".
+*##__Note2__: If the file suffix is ".txt" or ".tsv" , please use "read.table" instead of "read.csv".*
 
 **Second**, preprocess the input data as follows.
 ```
