@@ -40,7 +40,7 @@ furl<-"https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE57249&format=file&file=
 download.file(furl,destfile="./GSE57249_fpkm.txt.gz")
 Express=read.table(gzfile("GSE57249_fpkm.txt.gz"),header = T,row.names = 1)
 ```
-If you have already downloaded and unzipped the compressed file, you can read the txt file directly: 
+If you have downloaded and unzipped the compressed file in advance, you can read the txt file directly: 
 ```
 library(SCENA)
 Express=read.table("./GSE57249_fpkm.txt",header = T,row.names = 1)
@@ -96,5 +96,3 @@ adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label
 Authors: Yaxuan Cui, Shaoqiang Zhang, Yong Chen
 
 Maintainers: Yaxuan Cui, Shaoqiang Zhang (zhangshaoqiang@tjnu.edu.cn)
-
-
