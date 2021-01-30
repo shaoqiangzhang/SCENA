@@ -31,6 +31,9 @@ install.packages("gpuR") ## see Note1
 
 # 2. Usage examples
 **There are several detailed examples in the "examples" folder. You can directly run these examples in R.**
+
+**The "data" folder includes the download URL of some datasets** 
+
 ## An example for Yan's dataset is described as follows.
 
 **First**, load the package, download the dataset (rows are genes and columns are cells), and read file.
