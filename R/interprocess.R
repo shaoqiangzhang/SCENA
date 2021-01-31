@@ -11,7 +11,24 @@ datapreprocess<-function(Express,log=F) {
   if(log==TRUE){
     Express=log2(Express+1)
   }
-  return(Express)
+  featnum=nrow(Express)
+  ##Recommend parameter settings in the next step
+  if(len<500){
+	K=10
+	T=50
+  }else{
+	K=20
+	T=round(len/10, digits = 0)
+  }
+  if(featnum<10000){
+	X=c(50,100,150,200,250)
+  }else if(featnum<12000){
+	X=c(50,100,200,400,800)
+  }else{
+	X=c(200,400,600,800,1000)
+  }
+  cat("*Note: Recommend parameter settings in the next clustering step:\n K=", K, ",T=",T,",X1~X5=",X) 
+   return(Express)
 }
 
 
