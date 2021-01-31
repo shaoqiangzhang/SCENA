@@ -35,4 +35,4 @@ plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 library(mclust)
 presetlabel=substring(colnames(Express),1,5)## read the column names as preset cell types
 #presetlabel=rep(c(1:11),c(22,17,11,37,31,54,24,40,24,15,26)) ## preset 11 cell types 
-adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label 
+adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label ##ARI=0.9510208

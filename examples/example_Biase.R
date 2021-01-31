@@ -1,4 +1,4 @@
-###An example for running SCENA on the Biase's dataset (download from NCBI GEO)
+###An example for running SCENA on the Biase's dataset 
 
 #install.packages("parallel")
 #install.packages("SNFtool")
@@ -9,13 +9,9 @@
 
 library(SCENA)
 
-##download data from GEO and read file
-furl<-"https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE57249&format=file&file=GSE57249%5Ffpkm%2Etxt%2Egz"
-download.file(furl,destfile="./GSE57249_fpkm.txt.gz")
-Express=read.table(gzfile("GSE57249_fpkm.txt.gz"),header = T,row.names = 1)
-
-##read scRNA-seq expression file if you have downloaded and unzipped the file in advance
-#Express=read.table("./GSE57249_fpkm.txt",header = T,row.names = 1)
+## you need download file from https://github.com/shaoqiangzhang/scRNAseq_Datasets
+##read scRNA-seq expression file 
+Express=read.table("./Biase3celltypes.txt",header = T,row.names = 1)
 
 ##data preprocessing
 Express=datapreprocess(Express,log=T)  #log=T is to do log-transformation, log=F is no log-transformation
@@ -36,6 +32,7 @@ plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 
 ##compute ARI as follows:
 library(mclust)
-presetlabel=rep(c(1:3),c(9,20,27)) ## preset 3 cell types each containing 9 cells, 20 cells, 27 cells,respectively.
-adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label
+presetlabel=rep(c(1:3),c(9,20,20)) ## preset 3 cell types each containing 9 cells, 20 cells, 20 cells,respectively.
+#presetlabel=substring(colnames(Express),1,4) ## or read the column names as preset cell types
+adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label  ##ARI=1
 

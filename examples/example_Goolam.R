@@ -1,10 +1,11 @@
 ###An example for running SCENA on the Goolam's dataset (download from EBI ArrayExpress)
-install.packages("parallel")
-install.packages("SNFtool")
-install.packages("apcluster")
-install.packages("mclust")
-install.packages("devtools")
-devtools::install_github("shaoqiangzhang/SCENA")
+
+#install.packages("parallel")
+#install.packages("SNFtool")
+#install.packages("apcluster")
+#install.packages("mclust")
+#install.packages("devtools")
+#devtools::install_github("shaoqiangzhang/SCENA")
 
 library(SCENA)
 

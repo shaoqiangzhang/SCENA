@@ -21,6 +21,7 @@ Express=read.table(gzfile("GSE57872_GBM_data_matrix.txt.gz"),header = T,row.name
 Express=Express[,1:430] #select 430 cells
 Express=datapreprocess(Express,log=F)
 
+
 ## do clustering in parallel with 5 cpu cores
 detectCores()
 cl <- makeCluster(5)  # call 5 cpu cores
@@ -38,5 +39,5 @@ plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 ##compute ARI as follows:
 library(mclust)
 presetlabel=substring(colnames(Express),1,5) ## read the column names as preset cell types
-adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label
+adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label # ARI=0.8164146 or 0.6851536
 
