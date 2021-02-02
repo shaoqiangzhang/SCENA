@@ -44,6 +44,6 @@ In linux, you can download/ them via git command:
 ```
 git clone https://github.com/shaoqiangzhang/scRNAseq_Datasets/
 ```
-## The following contains a collection of publicly available datasets used by the Hemberg Group at the Sanger Institute.
+## The following website contains a collection of publicly available datasets used by the Hemberg Group at the Sanger Institute.
 
 https://hemberg-lab.github.io/scRNA.seq.datasets/
