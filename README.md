@@ -93,7 +93,7 @@ or
 library(gpuR)
 source('./ApSpe_GPU.R')## see Note 4
 Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
-cc=scena(Express=Express,log=T,gpu=T,num=6) ## gpu=T means to run it by calling GPU, num=6 is to set number of clusters as 6 
+cc=scena(Express=Express,log=T,gpu=T,num=6) ## "gpu=T": calling GPU to run, and "num" (number of clusters) is an optional parameter. 
 ```
 
 #### Finally, you can plot a scatter graph with PCA as follows.
