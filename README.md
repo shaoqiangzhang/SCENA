@@ -83,7 +83,7 @@ or
 ```
 cc=consClust(6) #set the number of clusters =6
 ```
-### Steps 2~4 have been integrated into a new function "scena" as follows.
+### For easy of use, Steps 2~4 have been integrated into a new function "scena" as follows.
 ```
 Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
 cc=scena(Express,log=T, gpu=F) ## "gpu=F" means to only call CPU.  
