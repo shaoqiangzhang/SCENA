@@ -86,14 +86,14 @@ cc=consClust(6) #set the number of clusters =6
 **Steps 2~4** have been integrated into a new function "scena" as follows.
 ```
 Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
-cc=scena(Express=Express,log=T, gpu=F) ## gpu=F means to only call CPU.  
+cc=scena(Express,log=T, gpu=F) ## "gpu=F" means to only call CPU.  
 ```
 or
 ```
 library(gpuR)
 source('./ApSpe_GPU.R')## see Note 4
 Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
-cc=scena(Express=Express,log=T,gpu=T,num=6) ## "gpu=T": calling GPU to run, and "num" (number of clusters) is an optional parameter. 
+cc=scena(Express,log=T,gpu=T,6) #"gpu=T": calling GPU, and "6" is the number of clusters which is an optional parameter. 
 ```
 
 #### Finally, you can plot a scatter graph with PCA as follows.
