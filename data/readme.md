@@ -16,6 +16,8 @@ https://s3.amazonaws.com/scrnaseq-public-datasets/manual-data/pollen/NBT_hiseq_l
 ## Patel's dataset
 https://scrnaseq-public-datasets.s3.amazonaws.com/scater-objects/patel.rds
 
+or
+
 https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE57872&format=file&file=GSE57872%5FGBM%5Fdata%5Fmatrix%2Etxt%2Egz
 
 ## Usoskin's dataset:
@@ -30,11 +32,9 @@ https://s3.amazonaws.com/scrnaseq-public-datasets/manual-data/kolodziejczyk/coun
 
 https://s3.amazonaws.com/scrnaseq-public-datasets/manual-data/zeisel/expression_mRNA_17-Aug-2014.txt
 
-##Treutlein's dataset:
+## Treutlein's dataset:
 
 https://static-content.springer.com/esm/art%3A10.1038%2Fnature13173/MediaObjects/41586_2014_BFnature13173_MOESM31_ESM.txt
-
-https://scrnaseq-public-datasets.s3.amazonaws.com/scater-objects/treutlein.rds
 
 ## Aditionally, the datasets of Biase, Ting, Treutlein, and Klein can also be downloaded from the following github sites
 
