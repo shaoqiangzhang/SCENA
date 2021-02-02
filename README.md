@@ -36,7 +36,7 @@ install.packages("gpuR") ## see Note1
 
 ## An example for Yan's dataset is described as follows.
 
-**First**, load the package, download the dataset (rows are genes and columns are cells), and read file.
+**Step 1**: load the package, download the dataset (rows are genes and columns are cells), and read file.
 
 ```
 library(SCENA)
@@ -46,14 +46,14 @@ Express=read.csv("./nsmb.2660-S2.csv", header = T,row.names = 1) ##see Note 2
 ```
 *##__Note2__: If the file suffix is ".txt" or ".tsv" , please use "read.table" instead of "read.csv".*
 
-**Second**, preprocess the input data as follows.
+**Step 2**: preprocess the input data as follows.
 ```
 Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
 Express=datapreprocess(Express,log=T)  #log=T is to do log-transformation, log=F is no log-transformation
 ```
 At the end of the preprocessing step, suggestions for setting parameters are provided.
 
-**Third**, do clustering in parallel with 5 CPU cores as follows. 
+**Step 3**: do clustering in parallel with 5 CPU cores as follows. 
 
 ```
 detectCores()
@@ -75,13 +75,23 @@ stopCluster(cl)
 ```
 *##__Note4__: Because the GPU code cannot be called from the installed SCENA package directly, please copy it to your working path and run it using ’source'.*
 
-**Fourth**, do consensus clustering as follows. 
+**Step 4**: do consensus clustering as follows. 
 ```
 cc=consClust() #no parameters if using the predicted number of clusters
 ```
 or
 ```
 cc=consClust(6) #set the number of clusters =6
+```
+**Steps 2~4** have been integrated into a new function "scena_cpu" as follows.
+```
+Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
+cc=scena_cpu(Express=Express,log=T) ## 
+```
+or
+```
+Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
+cc=scena_cpu(Express=Express,log=T,num=6) ## set the numner of clusters=6 
 ```
 
 #### Finally, you can plot a scatter graph with PCA as follows.
