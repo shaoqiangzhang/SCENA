@@ -1,6 +1,6 @@
-scena_cpu = function(Express=Express,log=F,it=it,num=num){
+scena_gpu = function(Express=Express,log=F,it=it,num=num){
   library(SNFtool)
-  #library(apcluster)
+  library(apcluster)
   library(parallel)
   
   Express=apply(Express,2,as.numeric)
@@ -29,12 +29,14 @@ scena_cpu = function(Express=Express,log=F,it=it,num=num){
   }else{
 	X=c(200,400,600,800,1000)
   }
+  
   if(missing(it)){
 	it=T
   }
-
+  
   cl <- makeCluster(5)  # call 5 cpu cores
-  parLapply(cl,1:5,K=K,T=it,X1=X[1],X2=X[2],X3=X[3],X4=X[4],X5=X[5],Express=Express,select_features)
+  source("ApSpe_GPU.R")
+  parLapply(cl,1:5,K=K,T=it,X1=X[1],X2=X[2],X3=X[3],X4=X[4],X5=X[5],Express=Express,select_features_GPU)
   stopCluster(cl)
   
   group1=read.table("./data1.txt",header = T,quote = "",sep=' ')
