@@ -35,7 +35,7 @@ scena_gpu = function(Express=Express,log=F,it=it,num=num){
   }
   
   cl <- makeCluster(5)  # call 5 cpu cores
-  source("ApSpe_GPU.R")
+  #source("ApSpe_GPU.R")
   parLapply(cl,1:5,K=K,T=it,X1=X[1],X2=X[2],X3=X[3],X4=X[4],X5=X[5],Express=Express,select_features_GPU)
   stopCluster(cl)
   
