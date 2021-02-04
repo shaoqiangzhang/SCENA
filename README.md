@@ -43,12 +43,13 @@ library(SCENA)
 furl<-"https://s3.amazonaws.com/scrnaseq-public-datasets/manual-data/yan/nsmb.2660-S2.csv"
 download.file(furl,destfile="./nsmb.2660-S2.csv")
 Express=read.csv("./nsmb.2660-S2.csv", header = T,row.names = 1) ##see Note 2
+
+Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
 ```
 *##__Note2__: If the file suffix is ".txt" or ".tsv" , please use "read.table" instead of "read.csv".*
 
 **Step 2**: preprocess the input data as follows.
 ```
-Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
 Express=datapreprocess(Express,log=T)  #log=T is to do log-transformation, log=F is no log-transformation
 ```
 At the end of the preprocessing step, suggestions for setting parameters are provided.
@@ -83,11 +84,15 @@ or
 ```
 cc=consClust(6) #set the number of clusters =6
 ```
-### For easy of use, Steps 2~4 have been integrated into a new function "scena_cpu" as follows.
+### For easy of use, Steps 2~4 for CPU computing have been integrated into a new function "scena_cpu" as follows.
 ```
-Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
-cc=scena_cpu(Express,log=T) ## only call CPU.  
+cc=scena_cpu(Express,log=T) ## only call CPU. "log=F" with log-transformation 
 ```
+or
+```
+cc=scena_cpu(Express,log=T,T=20) ## "T" is the the number of matrix iterations. #See Note 5.  
+```
+__#Note5__:If you want to get an acceptable result quickly, you can set the number of iterations *T* to be small (*T<=20*).
 
 #### Finally, you can plot a scatter graph with PCA as follows.
 ```
