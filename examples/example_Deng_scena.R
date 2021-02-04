@@ -7,8 +7,8 @@ library(SCENA)
 #read file
 Express=read.table("./Deng.txt", header = T,row.names = 1)
 
-#do clustering
-cc=scena(Express,log=T, gpu=F) ## log=T is to do log-tranformation,"gpu=F" means to only call CPU.  
+#do clustering using 5 CPUs
+cc=scena_cpu(Express,log=T) ## log=T is to do log-tranformation  
 
 
 #compute ARI
