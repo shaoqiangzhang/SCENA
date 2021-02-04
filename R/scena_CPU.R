@@ -1,15 +1,5 @@
-scena_cpu = function(Express=Express,log=F,num){
-  library(SNFtool)
-  library(apcluster)
-  library(parallel)
-  
-  Express=apply(Express,2,as.numeric)
+scena_cpu = function(Express=Express,num){
   len=ncol(Express)
-  Express=Express[apply(Express,1,function(x) sum(x>1)>len*0.05),]
-  Express=Express[apply(Express,1,function(x) sum(x>1)<len*0.95),]
-  if(log==TRUE){
-    Express=log2(Express+1)
-  }
   featnum=nrow(Express)
   ##Recommend parameter settings in the next step
   if(len<500){
