@@ -83,10 +83,10 @@ or
 ```
 cc=consClust(6) #set the number of clusters =6
 ```
-### For easy of use, Steps 2~4 have been integrated into a new function "scena" as follows.
+### For easy of use, Steps 2~4 have been integrated into a new function "scena_cpu" as follows.
 ```
 Express=Express[,2:91] #select 90 cells. You can omit it if you use full data
-cc=scena(Express,log=T, gpu=F) ## "gpu=F" means to only call CPU.  
+cc=scena_cpu(Express,log=T) ## only call CPU.  
 ```
 
 #### Finally, you can plot a scatter graph with PCA as follows.
