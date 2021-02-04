@@ -1,4 +1,7 @@
 scena = function(Express=Express,gpu=F,num){
+  library(SNFtool)
+  library(apcluster)
+  library(parallel)
   len=ncol(Express)
   featnum=nrow(Express)
   ##Recommend parameter settings in the next step

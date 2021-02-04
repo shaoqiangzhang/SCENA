@@ -1,4 +1,7 @@
 scena_cpu = function(Express=Express,num){
+  library(SNFtool)
+  library(apcluster)
+  library(parallel)
   len=ncol(Express)
   featnum=nrow(Express)
   ##Recommend parameter settings in the next step

@@ -16,13 +16,16 @@ datapreprocess<-function(Express,log=F) {
   if(len<500){
 	K=10
 	T=50
+  }else if(len<1000){
+	K=20
+	T=100
   }else{
 	K=20
 	T=round(len/10, digits = 0)
   }
-  if(featnum<10000){
+  if(featnum<=10000){
 	X=c(50,100,150,200,250)
-  }else if(featnum<12000){
+  }else if(featnum<=12000){
 	X=c(50,100,200,400,800)
   }else{
 	X=c(200,400,600,800,1000)
@@ -64,7 +67,7 @@ consClust<-function(num=num){
   else
     res=spectralClustering(tt, num)
 
-  print("Cluster label:")
+  cat("Cluster label:\n")
   print(res)
   return(res)
 }

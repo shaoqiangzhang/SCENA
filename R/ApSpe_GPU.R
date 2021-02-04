@@ -1,6 +1,10 @@
 select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Express=Express){
+  library(SNFtool)
+  library(apcluster)
   alpha=0.5
   KNN_SMI_GPU <- function(W,K=20,t=20) {
+
+    library(gpuR)
 
     .discretisation <- function(eigenVectors) {
 
