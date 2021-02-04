@@ -92,7 +92,7 @@ or
 ```
 cc=scena_cpu(Express,log=T,T=20) ## "T" is the the number of matrix iterations. #See Note 5.  
 ```
-__#Note5__:If you want to get an acceptable result quickly, you can set the number of iterations *T* to be small (*e.g. T=20*).
+__#Note5__: For big dataset, if you want to get an acceptable result in a short time, you can set the number of iterations *T* to be small (*e.g. T=20*).
 
 #### Finally, you can plot a scatter graph with PCA as follows.
 ```
