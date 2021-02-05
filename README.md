@@ -113,4 +113,4 @@ adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label
 # Contact us
 Authors: Yaxuan Cui, Shaoqiang Zhang, Yong Chen
 
-Maintainers: Yaxuan Cui, Shaoqiang Zhang (zhangshaoqiang@tjnu.edu.cn)
+Maintainer: Shaoqiang Zhang (zhangshaoqiang@tjnu.edu.cn)
