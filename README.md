@@ -6,17 +6,18 @@ Version: 1.0.1
 
 Depends: R(>3.6)
 
-Import packages: parallel, SNFtool, gpuR, apcluster, mclust
+Import packages: parallel, SNFtool, gpuR, apcluster, mclust, ggplot2
 
 Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network Affinity, to be published. 
 
 # 1. Installation
 ##  Start by installing the necessary packages  
 ```
-install.packages("parallel")
-install.packages("SNFtool")
-install.packages("apcluster")
-install.packages("mclust") # this package is used to compute ARI
+requiredPackages = c('parallel','ggplot2','SNFtool',"apcluster","mclust")
+for(p in requiredPackages){
+  if(!require(p,character.only = TRUE)) install.packages(p)
+  library(p,character.only = TRUE)
+}
 ```
 ## Install the SCENA package
 ```
@@ -84,13 +85,13 @@ or
 ```
 cc=consClust(6) #set the number of clusters =6
 ```
-### For easy of use, Steps 2~4 for CPU computing have been integrated into a new function "scena_cpu" as follows.
+### For easy of use, Steps 3~4 for CPU computing have been integrated into a new function "scena_cpu" as follows.
 ```
-cc=scena_cpu(Express,log=T) ## only call CPU. "log=F" with log-transformation 
+cc=scena_cpu(Express)  
 ```
 or
 ```
-cc=scena_cpu(Express,log=T,T=20) ## "T" is the the number of matrix iterations. #See Note 5.  
+cc=scena_cpu(Express,T=20) ## "T" is the the number of matrix iterations. #See Note 5.  
 ```
 __#Note5__: For big dataset, if you need an acceptable result in a short time, you can set the number of iterations *T* to be small (*e.g. T=20*).
 
