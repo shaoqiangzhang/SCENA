@@ -65,6 +65,7 @@ stopCluster(cl)
 ```
 
 *##__Note3__: K is the number of K-nearest neighbors; T is the number of matrix iterations, X1~X5 are top number of selected features.*
+*For a big dataset(number of cells>1000), if you just need an acceptable result quickly, you can set the number of iterations T to be small (e.g. T=20).*
 
 Alternatively, if your computer supports GPU computing, you can do clustering in parallel with CPU+GPU as follows.
 
@@ -87,14 +88,16 @@ cc=consClust(6) #set the number of clusters =6
 ```
 ### For easy of use, Steps 3~4 for CPU computing have been integrated into a new function "scena_cpu" as follows.
 ```
-cc=scena_cpu(Express)  
+cc=scena_cpu(Express)  ##use default parameters
 ```
 or
 ```
-cc=scena_cpu(Express,T=20) ## "T" is the the number of matrix iterations. #See Note 5.  
+cc=scena_cpu(Express,T=20) ## "T" is the the number of matrix iterations.  
 ```
-__#Note5__: For big dataset, if you need an acceptable result in a short time, you can set the number of iterations *T* to be small (*e.g. T=20*).
-
+or
+```
+cc=scena_cpu(Express,T=20,num=6) ##"num" is the number of clusters
+```
 #### Finally, you can plot a scatter graph with PCA as follows.
 ```
 plotPCA(Express,cc) #  'cc' is label of the predicted clusters
