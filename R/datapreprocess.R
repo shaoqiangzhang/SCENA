@@ -1,7 +1,7 @@
 
 datapreprocess<-function(Express,log=F) {
   library(SNFtool)
-  library(apcluster)
+  #library(apcluster)
   library(parallel)
   
   Express=apply(Express,2,as.numeric)
