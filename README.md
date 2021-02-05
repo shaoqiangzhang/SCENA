@@ -86,7 +86,7 @@ or
 ```
 cc=consClust(6) #set the number of clusters =6
 ```
-### For easy of use, Steps 3~4 for CPU computing have been integrated into a new function "scena_cpu" as follows.
+### For easy of use, Steps 3 and 4 for CPU computing have been integrated into a new function "scena_cpu" as follows.
 ```
 cc=scena_cpu(Express)  ##use default parameters
 ```
