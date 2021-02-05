@@ -1,16 +1,18 @@
 ###The example for running SCENA on Kolodziejczyk's dataset 
 
-#install.packages("parallel")
-#install.packages("SNFtool")
-#install.packages("apcluster")
-#install.packages("mclust")
-#install.packages("devtools")
-#devtools::install_github("shaoqiangzhang/SCENA")
+##install required packages
+requiredPackages = c('parallel','ggplot2','SNFtool',"apcluster","mclust")
+for(p in requiredPackages){
+  if(!require(p,character.only = TRUE)) install.packages(p)
+  library(p,character.only = TRUE)
+}
+install.packages("devtools")
+devtools::install_github("shaoqiangzhang/SCENA")
 
 
 library(SCENA)
 
-##read file
+##download and read file
 furl<-"https://s3.amazonaws.com/scrnaseq-public-datasets/manual-data/kolodziejczyk/counttable_es.csv"
 download.file(furl,destfile="./counttable_es.csv")
 Express=read.csv("./counttable_es.csv", sep=" ", header = T,row.names = 1)
@@ -38,4 +40,4 @@ plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 ##compute ARI as follows:
 library(mclust)
 presetlabel=substring(colnames(Express),9,10) ## read the column names as preset cell types
-adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label #ARI=0.8880762
+adjustedRandIndex(presetlabel,as.vector(cc)) ## ARI=1

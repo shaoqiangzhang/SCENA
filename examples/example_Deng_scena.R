@@ -1,15 +1,24 @@
-
-## Download Deng.zip from https://github.com/shaoqiangzhang/scRNAseq_Datasets
-## unzip file to your working directory
+##install packages
+requiredPackages = c('parallel','ggplot2','SNFtool',"apcluster","mclust")
+for(p in requiredPackages){
+  if(!require(p,character.only = TRUE)) install.packages(p)
+  library(p,character.only = TRUE)
+}
+install.packages("devtools")
+devtools::install_github("shaoqiangzhang/SCENA")
 
 library(SCENA)
 
-#read file
+## Download Deng.zip from https://github.com/shaoqiangzhang/scRNAseq_Datasets
+## unzip file to your working directory
+##read file
 Express=read.table("./Deng.txt", header = T,row.names = 1)
 
-#do clustering using 5 CPUs
-cc=scena_cpu(Express,log=T) ## log=T is to do log-tranformation  
+##preprocess input data
+Express=datapreprocess(Express,log=T) #"log=T" is to do log-transformation
 
+##do clustering using 5 CPUs
+cc=scena_cpu(Express) 
 
 #compute ARI
 library(mclust)

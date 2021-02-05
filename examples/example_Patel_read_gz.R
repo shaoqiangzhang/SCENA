@@ -1,11 +1,13 @@
 ####An example for running SCENA on the Patel's dataset 
 
-#install.packages("parallel")
-#install.packages("SNFtool")
-#install.packages("apcluster")
-#install.packages("mclust")
-#install.packages("devtools")
-#devtools::install_github("shaoqiangzhang/SCENA")
+##install required packages
+requiredPackages = c('parallel','ggplot2','SNFtool',"apcluster","mclust")
+for(p in requiredPackages){
+  if(!require(p,character.only = TRUE)) install.packages(p)
+  library(p,character.only = TRUE)
+}
+install.packages("devtools")
+devtools::install_github("shaoqiangzhang/SCENA")
 
 library(SCENA)
 
@@ -26,12 +28,10 @@ Express=datapreprocess(Express,log=F) #log=F is no log-transformation
 detectCores()
 cl <- makeCluster(5)  # call 5 cpu cores
 parLapply(cl,1:5,K=10,T=50,X1=50,X2=100,X3=150,X4=200,X5=250, Express=Express,select_features)
-##Note: K is the number of K-nearest neighbors; T is the number of matrix iterations, X1~X5 are top number of selected features.
 stopCluster(cl)
 
 ##do consensus clustering
 cc=consClust(9) #set the number of clusters = 9
-#cc=consClust() #no parameters if using the predicted number of clusters
 
 ##plot scatter graph with PCA
 plotPCA(Express,cc) #  'cc' is label of the predicted clusters

@@ -1,11 +1,13 @@
 ###An example for running SCENA on the Biase's dataset 
 
-#install.packages("parallel")
-#install.packages("SNFtool")
-#install.packages("apcluster")
-#install.packages("mclust")
-#install.packages("devtools")
-#devtools::install_github("shaoqiangzhang/SCENA")
+##install packages
+requiredPackages = c('parallel','ggplot2','SNFtool',"apcluster","mclust")
+for(p in requiredPackages){
+  if(!require(p,character.only = TRUE)) install.packages(p)
+  library(p,character.only = TRUE)
+}
+install.packages("devtools")
+devtools::install_github("shaoqiangzhang/SCENA")
 
 library(SCENA)
 
@@ -34,5 +36,5 @@ plotPCA(Express,cc) #  'cc' is label of the predicted clusters
 library(mclust)
 presetlabel=rep(c(1:3),c(9,20,20)) ## preset 3 cell types each containing 9 cells, 20 cells, 20 cells,respectively.
 #presetlabel=substring(colnames(Express),1,4) ## or read the column names as preset cell types
-adjustedRandIndex(presetlabel,as.vector(cc)) ## 'cc' is predicted label  ##ARI=1
+adjustedRandIndex(presetlabel,as.vector(cc)) ## ARI=1
 

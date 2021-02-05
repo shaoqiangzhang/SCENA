@@ -1,8 +1,11 @@
 ###An example for running SCENA on Pollen's dataset 
-install.packages("parallel")
-install.packages("SNFtool")
-install.packages("apcluster")
-install.packages("mclust")
+
+##install required packages
+requiredPackages = c('parallel','ggplot2','SNFtool',"apcluster","mclust")
+for(p in requiredPackages){
+  if(!require(p,character.only = TRUE)) install.packages(p)
+  library(p,character.only = TRUE)
+}
 install.packages("devtools")
 devtools::install_github("shaoqiangzhang/SCENA")
 
