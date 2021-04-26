@@ -80,11 +80,11 @@ stopCluster(cl)
 
 **Step 4**: do consensus clustering as follows. 
 ```
-cc=consClust() #no parameters if using the predicted number of clusters
+cc=consClust(Express) 
 ```
 or
 ```
-cc=consClust(6) #set the number of clusters =6
+cc=consClust(Express,6) #set the number of clusters =6
 ```
 ### For easy of use, Steps 3 and 4 for CPU computing have been integrated into a new function "scena_cpu" as follows.
 ```
