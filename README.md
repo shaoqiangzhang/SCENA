@@ -2,7 +2,7 @@
 
 SCENA is a R package for unsupervised clustering of single cell RNA-Seq data
 
-Version: 1.0.1
+Version: 1.0.2
 
 Depends: R(>3.6)
 
@@ -71,7 +71,7 @@ Alternatively, if your computer supports GPU computing, you can do clustering in
 
 ```
 library(gpuR)
-source('./ApSpe_GPU.R')## see Note 4
+source('./parallelclust_gpu.R')## see Note 4
 cl <- makeCluster(5)
 parLapply(cl,1:5,K=10,T=50,X1=50,X2=100,X3=150,X4=200,X5=250,Express=Express,select_features_GPU)
 stopCluster(cl)
