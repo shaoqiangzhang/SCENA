@@ -1,4 +1,4 @@
-result<-function(group1,group2,group3,group4,group5){
+result<-function(Express=Express,group1,group2,group3,group4,group5){
   collect <- matrix(rep(0,5*ncol(Express)),5,ncol(Express))
   collect[1,]=group1
   collect[2,]=group2

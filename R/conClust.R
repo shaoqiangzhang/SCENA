@@ -1,4 +1,4 @@
-consClust<-function(num=num){
+consClust<-function(Express=Express,num=num){
   library(SNFtool)
   group1=read.table("./data1.txt",header = T,quote = "",sep=' ')
   group2=read.table("./data2.txt",header = T,quote = "",sep=' ')
@@ -21,7 +21,7 @@ consClust<-function(num=num){
   a4=max(group4)
   a5=max(group5)
   #Merge the results
-  tt=result(group1,group2,group3,group4,group5)
+  tt=result(Express,group1,group2,group3,group4,group5)
   if(missing(num)==TRUE){
     c1=c(a1,a2,a3,a4,a5)
     c1=median(c1)
