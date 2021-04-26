@@ -55,7 +55,7 @@ scena_gpu = function(Express=Express,T=T,num=num){
   a4=max(group4)
   a5=max(group5)
   #Merge the results
-  tt=result(group1,group2,group3,group4,group5)
+  tt=result(Express,group1,group2,group3,group4,group5)
   if(missing(num)==TRUE){
     c1=c(a1,a2,a3,a4,a5)
     c1=median(c1)
