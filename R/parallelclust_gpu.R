@@ -92,18 +92,21 @@ select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Ex
     W = normalize(W);
     W = (W+t(W))/2;
     newW = (.dominateset(W,K))
-    gpuA<-gpuMatrix(W,type = "double")
-    gpuB<-gpuMatrix(newW ,type = "double")
+    gpuA=gpuMatrix(W,type = "double") #copy cpu to gpu
+    gpuB=gpuMatrix(newW ,type = "double")
     for (i in 1:floor(log2(t))) {
-      gpuB<-gpuB %*% gpuB
+		gpuC=gpuB
+		gpuB=gpuC %*% gpuC
     }
-	gpuA<-gpuB %*% (gpuA) %*% t(gpuB)
+	gpuD = gpuB %*% (gpuA) %*% t(gpuB)
 
-    for (i in 1:nrow(gpuA)) {
-      for (j in 1:ncol(gpuA)) {
-        nextW[i,j]=gpuA[i,j]
-      }
-    }
+    #for (i in 1:nrow(gpuA)) {
+    #  for (j in 1:ncol(gpuA)) {
+    #    nextW[i,j]=gpuA[i,j]
+    #  }
+    #}
+	nextW=gpuD[]##copy gpu to cpu
+	
     W = nextW + diag(nrow(W));
     W = (W + t(W))/2;
 
