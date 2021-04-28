@@ -12,6 +12,9 @@ scena_cpu = function(Express=Express,T=T,num=num){
   }else if(len<1000){
 	K=20
 	it=100
+  }else if(len>=5000){
+	K=20
+	it=100
   }else{
 	K=20
 	it=round(len/10, digits = 0)

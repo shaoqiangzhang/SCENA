@@ -19,6 +19,9 @@ datapreprocess<-function(Express,log=F) {
   }else if(len<1000){
 	K=20
 	T=100
+  }else if(len>=5000){
+	K=20
+	T=100
   }else{
 	K=20
 	T=round(len/10, digits = 0)
