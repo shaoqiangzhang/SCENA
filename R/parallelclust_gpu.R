@@ -97,7 +97,8 @@ select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Ex
     for (i in 1:floor(log2(t))) {
 		gpuB=gpuB %*% gpuB
     }
-	gpuA = gpuB %*% (gpuA) %*% t(gpuB)
+	gpuA = gpuB %*% (gpuA);
+	gpuA =gpuA %*% t(gpuB)
 
     for (i in 1:nrow(gpuA)) {
       for (j in 1:ncol(gpuA)) {
