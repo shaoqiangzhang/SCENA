@@ -163,7 +163,7 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
     W = (W+t(W))/2;
     # Calculate the local transition matrix.
     newW = (.dominateset(W,K))
-    for (i in 1:floor(log2(t)-1)) {
+    for (i in 1:floor(log2(t))) {
       newW=newW %*% newW;
 	  #prew=newW;
 	  #newW=prew %*% prew;
