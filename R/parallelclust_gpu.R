@@ -94,7 +94,7 @@ select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Ex
     newW = (.dominateset(W,K))
     gpuA=gpuMatrix(W,type = "double") #copy cpu to gpu
     gpuB=gpuMatrix(newW ,type = "double")
-    for (i in 1:floor(log2(t))) {
+    for (i in 1:floor(log2(t)-1)) {
 		gpuB=gpuB %*% gpuB
     }
 	gpuA = gpuB %*% (gpuA) %*% t(gpuB)
