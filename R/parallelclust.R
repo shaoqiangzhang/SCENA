@@ -172,7 +172,8 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
       #  break;
       #}
     }
-	nextW=newW %*% (W) %*% t(newW);
+	nextW=newW %*% (W);
+	nextW=nextW %*% t(newW);
 	
     W = nextW + diag(nrow(W));
     W = (W + t(W))/2;
