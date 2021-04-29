@@ -24,11 +24,20 @@ for(p in requiredPackages){
 install.packages("devtools")
 devtools::install_github("shaoqiangzhang/SCENA")
 ```
+
 ## If you computer supports GPU programming (optional)
 ```
 install.packages("gpuR") ## see Note1 
 ```
 *##__Note1__: the package "gpuR" was built on Linux x86_64 (https://www.rdocumentation.org/packages/gpuR), and cannot be installed on a Windows system.*
+
+## To speed up matrix computing, recommend you install the "OpenBLAS" library on your operating system(Linux as an example)
+ ```
+ git clone https://github.com/xianyi/OpenBLAS.git
+ cd OpenBLAS
+ make FC=gfortran
+ sudo make PREFIX=/usr/local install
+ ```
 
 # 2. Usage examples
 **There are several detailed examples in the "examples" folder. You can directly run these examples in R.**
