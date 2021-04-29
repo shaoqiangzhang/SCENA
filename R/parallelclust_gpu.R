@@ -95,22 +95,17 @@ select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Ex
 	## the following is gpu matrix multiplication
 	gpuB=gpuMatrix(newW ,type = "float")
 	gpuA=gpuMatrix(W,type = "float")
-	if(dim(W)[1]<5000){
-		for (i in 1:floor(log2(t))) {
-			gpuB=gpuB %*% gpuB
-		}
-	 
-		gpuA = gpuB %*% (gpuA) 
-		gpuA =gpuA %*% t(gpuB)
-	}else{
-		gpuA=gpuB+gpuA+t(gpuB)
+	for (i in 1:floor(log2(t))) {
+		gpuB=gpuB %*% gpuB
 	}
-    for (i in 1:nrow(gpuA)) {
-      for (j in 1:ncol(gpuA)) {
-        nextW[i,j]=gpuA[i,j]
-      }
-    }##copy gpu to cpu
-	nextW=normalize(nextW);
+	gpuA = gpuB %*% (gpuA)%*% t(gpuB); 
+		
+	for (i in 1:nrow(gpuA)) {
+		for (j in 1:ncol(gpuA)) {
+			nextW[i,j]=gpuA[i,j]
+		}
+	}
+
     W = nextW + diag(nrow(W));
     W = (W + t(W))/2;
 
