@@ -1,8 +1,8 @@
 Package: SCENA
 Type: Package
-Title:  Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network Affinity
-Version: 1.0.2
-Author: Yanxuan Cui, Shaoqiang Zhang
+Title:  Consensus clustering of single-cell RNA-seq data by enhancing network affinity
+Version: 1.0.3
+Author: Shaoqiang Zhang,Yanxuan Cui
 Maintainer: Shaoqiang Zhang <sqzhang@163.com>
 Description: SCENA is a R package for unsupervised clustering of single cell RNA-Seq data.
     It contains a version which can be run by GPU (gpuR).
@@ -10,4 +10,4 @@ License: MIT License
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
-Packaged: 2021-03-26 09:02:03 UTC; dell
+Packaged: 2021-05-05 09:02:03 UTC; dell
