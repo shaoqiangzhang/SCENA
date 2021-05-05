@@ -33,6 +33,6 @@ datapreprocess<-function(Express,log=F) {
   }else{
 	X=c(200,400,600,800,1000)
   }
-  cat("*Note: Recommend parameter settings in the next clustering step:\n K=", K, ",T=",T,",X1~X5=",X) 
+  cat("*Note: Recommend parameter settings in the next clustering step:\n K=", K, ",T=",T,",X1~X5=",X,"\n") 
    return(Express)
 }
