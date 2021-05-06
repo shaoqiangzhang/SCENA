@@ -1,4 +1,4 @@
-select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express=Express){
+bigdataclust=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express=Express){
   library(SNFtool)
   library(apcluster)
   alpha=0.5
@@ -78,7 +78,7 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
 
     return(normalize(A))
   }
-  KNN_SMI <- function(W,K=10,T=50,n) {
+  KNN_SMI <- function(W,K=10,T=50,n,n_cores) {
     .discretisation <- function(eigenVectors) {
 
       normalize <- function(x) x / sqrt(sum(x^2))
@@ -165,7 +165,8 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
     newW = (.dominateset(W,K))
 	if(dim(W)[1] <=10000) {
 		for (i in 1:floor(log2(T))) {
-		newW=newW %*% newW;
+		#newW=newW %*% newW;
+		newW=matmultip(newW,newW,n_cores)
 		#prew=newW;
 		#newW=prew %*% prew;
 		#if(max(abs(prew-newW))<(1/n*0.01))
@@ -173,7 +174,9 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
 		#  break;
 		#}
 		}
-		nextW=newW %*% (W) %*% t(newW);
+		#nextW=newW %*% (W) %*% t(newW);
+		nextW=matmultip(newW,W,n_cores)
+		nextW=matmultip(nextW,t(newW),n_cores)
 	}else{
 		nextW=(newW + t(newW))/2 ;## enhance W by addition 
 	}
@@ -188,6 +191,16 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
   Total<-cbind(num,Express)
   Total1<-Total[order(Total[,1],decreasing = TRUE),]
   n=ncol(Express)
+  
+  library(doParallel)
+  library(foreach)
+  variablecores=floor((detectCores() - 1)/5);
+  
+  if(variablecores>1){
+    n_cores=variablecores
+  }else{
+    n_cores=1
+  }
   if(X==1){
     alpha=0.5
     Total1=Total1[1:X1,]
@@ -195,9 +208,9 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
     Total12=Total1[,-1]
     Total12=apply(Total12,1,as.numeric)
     Data11 = standardNormalization(Total12)
-    Dist11 = dist2(as.matrix(Data11),as.matrix(Data11))
+    Dist11 = dist3(as.matrix(Data11),as.matrix(Data11),n_cores)
     W11 = affinityMatrix(Dist11, K, alpha)
-    W1 = KNN_SMI(W11, K, T, n)
+    W1 = KNN_SMI(W11, K, T, n,n_cores)
     #function reference KNN_SMI
     apresla1<-apcluster(negDistMat(r=7),W1)
     s11<-negDistMat(W1,r=7)
@@ -213,9 +226,9 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
     Total22=Total1[,-1]
     Total22=apply(Total22,1,as.numeric)
     Data21 = standardNormalization(Total22)
-    Dist21 = dist2(as.matrix(Data21),as.matrix(Data21))
+    Dist21 = dist3(as.matrix(Data21),as.matrix(Data21),n_cores)
     W21 = affinityMatrix(Dist21, K, alpha)
-    W2 = KNN_SMI(W21, K, T, n)
+    W2 = KNN_SMI(W21, K, T, n,n_cores)
     apresla2<-apcluster(negDistMat(r=7),W2)
     s21<-negDistMat(W2,r=7)
     apreslb2<-apcluster(s21)
@@ -229,9 +242,9 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
     Total32=Total1[,-1]
     Total32=apply(Total32,1,as.numeric)
     Data31 = standardNormalization(Total32)
-    Dist31 = dist2(as.matrix(Data31),as.matrix(Data31))
+    Dist31 = dist3(as.matrix(Data31),as.matrix(Data31),n_cores)
     W31 = affinityMatrix(Dist31, K, alpha)
-    W3 = KNN_SMI(W31, K, T, n)
+    W3 = KNN_SMI(W31, K, T, n,n_cores)
     apresla3<-apcluster(negDistMat(r=7),W3)
     s31<-negDistMat(W3,r=7)
     apreslb3<-apcluster(s31)
@@ -245,9 +258,9 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
     Total42=Total1[,-1]
     Total42=apply(Total42,1,as.numeric)
     Data41 = standardNormalization(Total42)
-    Dist41 = dist2(as.matrix(Data41),as.matrix(Data41))
+    Dist41 = dist3(as.matrix(Data41),as.matrix(Data41),n_cores)
     W41 = affinityMatrix(Dist41, K, alpha)
-    W4 = KNN_SMI(W41, K, T, n)
+    W4 = KNN_SMI(W41, K, T, n,n_cores)
     apresla4<-apcluster(negDistMat(r=7),W4)
     s41<-negDistMat(W4,r=7)
     apreslb4<-apcluster(s41)
@@ -261,9 +274,9 @@ select_features=function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express
     Total52=Total1[,-1]
     Total52=apply(Total52,1,as.numeric)
     Data51 = standardNormalization(Total52)
-    Dist51 = dist2(as.matrix(Data51),as.matrix(Data51))
+    Dist51 = dist3(as.matrix(Data51),as.matrix(Data51),n_cores)
     W51 = affinityMatrix(Dist51, K, alpha)
-    W5 = KNN_SMI(W51, K, T, n)
+    W5 = KNN_SMI(W51, K, T, n,n_cores)
     apresla5<-apcluster(negDistMat(r=7),W5)
     s51<-negDistMat(W5,r=7)
     apreslb5<-apcluster(s51)

@@ -8,10 +8,6 @@ matmultip <- function(X,C,n_cores) {
 		X[rowlabel,]%*% C
 	}
 	
-	if((detectCores() - 1)<n_cores){
-		n_cores=detectCores() -1
-	}
-	
 	cls <- makeCluster(n_cores)
 	registerDoParallel(cls)
 	XC <- foreach(rowlabel=1:ndata,.combine='rbind') %dopar% mt(X,C,rowlabel)
