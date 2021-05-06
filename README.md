@@ -38,6 +38,10 @@ install.packages("gpuR") ## see Note1
  make FC=gfortran
  sudo make PREFIX=/usr/local install
  ```
+ then,set the number of threads using environment variables as follows
+ ```
+ export OPENBLAS_NUM_THREADS=4
+ ```
 
 # 2. Usage examples
 **There are several detailed examples in the "examples" folder. You can directly run these examples in R.**
