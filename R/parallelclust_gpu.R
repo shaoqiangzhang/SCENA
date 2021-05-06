@@ -1,8 +1,34 @@
 select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Express=Express){
   library(SNFtool)
   library(apcluster)
+  library(gpuR)
   alpha=0.5
-  KNN_SMI_GPU <- function(W,K=20,t=20) {
+  
+  dist2GPU <- function(X,C) {
+    ndata = nrow(X)
+    ncentres = nrow(C)
+
+    sumsqX = rowSums(X^2)
+    sumsqC = rowSums(C^2)
+
+    XC =matrix(0,ndata, ncentres)
+    gpuX=gpuMatrix(X ,type = "float")
+    gpuC=gpuMatrix(t(C) ,type = "float")
+    gpuXC=gpuMatrix(XC ,type = "float")
+    gpuXC = 2 * (gpuX %*% gpuC)
+    
+    for (i in 1:ndata) {
+      for (j in 1:ncentres) {
+        XC[i,j]=gpuXC[i,j]
+      }
+    }
+  
+    res = matrix(rep(sumsqX,times=ncentres),ndata,ncentres) + t(matrix(rep(sumsqC,times=ndata),ncentres,ndata)) - XC
+    res[res < 0] = 0
+    return(res)
+  }##distance between two matrices
+
+  KNN_SMI_GPU <- function(W,K=20,T=20) {
 
     library(gpuR)
 
@@ -96,7 +122,7 @@ select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Ex
 	gpuB=gpuMatrix(newW ,type = "float")
 	gpuA=gpuMatrix(W,type = "float")
 	if(dim(W)[1]<=5000){
-		for (i in 1:floor(log2(t))) {
+		for (i in 1:floor(log2(T))) {
 			gpuB=gpuB %*% gpuB
 		}
 		gpuA = gpuB %*% (gpuA)%*% t(gpuB); 
@@ -207,7 +233,7 @@ select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Ex
     Total12=Total1[,-1]
     Total12=apply(Total12,1,as.numeric)
     Data11 = standardNormalization(Total12)
-    Dist11 = dist2(as.matrix(Data11),as.matrix(Data11))
+    Dist11 = dist2GPU(as.matrix(Data11),as.matrix(Data11))
     W11 = affinityMatrix(Dist11, K, alpha)
     W1 = KNN_SMI_GPU(W11, K, T)
     apresla1<-apcluster(negDistMat(r=7),W1)
@@ -223,7 +249,7 @@ select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Ex
     Total22=Total1[,-1]
     Total22=apply(Total22,1,as.numeric)
     Data21 = standardNormalization(Total22)
-    Dist21 = dist2(as.matrix(Data21),as.matrix(Data21))
+    Dist21 = dist2GPU(as.matrix(Data21),as.matrix(Data21))
     W21 = affinityMatrix(Dist21, K, alpha)
     W2 = KNN_SMI_GPU(W21, K, T)
     apresla2<-apcluster(negDistMat(r=7),W2)
@@ -239,7 +265,7 @@ select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Ex
     Total32=Total1[,-1]
     Total32=apply(Total32,1,as.numeric)
     Data31 = standardNormalization(Total32)
-    Dist31 = dist2(as.matrix(Data31),as.matrix(Data31))
+    Dist31 = dist2GPU(as.matrix(Data31),as.matrix(Data31))
     W31 = affinityMatrix(Dist31, K, alpha)
     W3 = KNN_SMI_GPU(W31, K, T)
     apresla3<-apcluster(negDistMat(r=7),W3)
@@ -255,7 +281,7 @@ select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Ex
     Total42=Total1[,-1]
     Total42=apply(Total42,1,as.numeric)
     Data41 = standardNormalization(Total42)
-    Dist41 = dist2(as.matrix(Data41),as.matrix(Data41))
+    Dist41 = dist2GPU(as.matrix(Data41),as.matrix(Data41))
     W41 = affinityMatrix(Dist41, K, alpha)
     W4 = KNN_SMI_GPU(W41, K, T)
     apresla4<-apcluster(negDistMat(r=7),W4)
@@ -271,7 +297,7 @@ select_features_GPU = function(X,K=10,T=100,X1=50,X2=100,X3=150,X4=200,X5=250,Ex
     Total52=Total1[,-1]
     Total52=apply(Total52,1,as.numeric)
     Data51 = standardNormalization(Total52)
-    Dist51 = dist2(as.matrix(Data51),as.matrix(Data51))
+    Dist51 = dist2GPU(as.matrix(Data51),as.matrix(Data51))
     W51 = affinityMatrix(Dist51, K, alpha)
     W5 = KNN_SMI_GPU(W51, K, T)
     apresla5<-apcluster(negDistMat(r=7),W5)
