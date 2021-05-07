@@ -78,7 +78,7 @@ clust=function(K=10,T=100,features=50, Express=Express){
 
     return(normalize(A))
   }
-  KNN_SMI <- function(W,K=10,T=50,n) {
+  KNN_SMI <- function(W,K=10,T=50,n_cores) {
     .discretisation <- function(eigenVectors) {
 
       normalize <- function(x) x / sqrt(sum(x^2))
@@ -165,15 +165,12 @@ clust=function(K=10,T=100,features=50, Express=Express){
     newW = (.dominateset(W,K))
 	if(dim(W)[1] <=10000) {
 		for (i in 1:floor(log2(T))) {
-		newW=newW %*% newW;
-		#prew=newW;
-		#newW=prew %*% prew;
-		#if(max(abs(prew-newW))<(1/n*0.01))
-		#{
-		#  break;
-		#}
+		#newW=newW %*% newW;
+		newW=matmultip(newW,newW,n_cores)
 		}
-		nextW=newW %*% (W) %*% t(newW);
+		#nextW=newW %*% (W) %*% t(newW);
+		nextW=matmultip(newW,W,n_cores)
+		nextW=matmultip(nextW,t(newW),n_cores)
 	}else{
 		nextW=(newW + t(newW))/2 ;## enhance W by addition 
 	}
@@ -187,7 +184,18 @@ clust=function(K=10,T=100,features=50, Express=Express){
   num=as.array(num)
   Total<-cbind(num,Express)
   Total1<-Total[order(Total[,1],decreasing = TRUE),]
-  n=ncol(Express)
+  #n=ncol(Express)
+  
+  library(doParallel)
+  library(foreach)
+  
+  variablecores=detectCores() - 1;
+  
+  if(variablecores>1){
+    n_cores=variablecores
+  }else{
+    n_cores=1
+  }
 
     #alpha=0.5
     Total1=Total1[1:features,]
@@ -195,9 +203,9 @@ clust=function(K=10,T=100,features=50, Express=Express){
     Total12=Total1[,-1]
     Total12=apply(Total12,1,as.numeric)
     Data11 = standardNormalization(Total12)
-    Dist11 = dist2(as.matrix(Data11),as.matrix(Data11))
+    Dist11 = dist3(as.matrix(Data11),as.matrix(Data11),n_cores)
     W11 = affinityMatrix(Dist11, K, alpha)
-    W1 = KNN_SMI(W11, K, T, n)
+    W1 = KNN_SMI(W11, K, T, n_cores)
     #function reference KNN_SMI
     apresla1<-apcluster(negDistMat(r=7),W1)
     s11<-negDistMat(W1,r=7)
