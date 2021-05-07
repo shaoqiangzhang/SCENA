@@ -78,7 +78,7 @@ clust=function(K=10,T=100,features=50, Express=Express){
 
     return(normalize(A))
   }
-  KNN_SMI <- function(W,K=10,T=50,n_cores) {
+  KNN_SMI_CPU <- function(W,K=10,T=50,n_cores) {
     .discretisation <- function(eigenVectors) {
 
       normalize <- function(x) x / sqrt(sum(x^2))
@@ -205,7 +205,7 @@ clust=function(K=10,T=100,features=50, Express=Express){
     Data11 = standardNormalization(Total12)
     Dist11 = dist3(as.matrix(Data11),as.matrix(Data11),n_cores)
     W11 = affinityMatrix(Dist11, K, alpha)
-    W1 = KNN_SMI(W11, K, T, n_cores)
+    W1 = KNN_SMI_CPU(W11, K, T, n_cores)
     #function reference KNN_SMI
     apresla1<-apcluster(negDistMat(r=7),W1)
     s11<-negDistMat(W1,r=7)

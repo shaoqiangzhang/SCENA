@@ -24,7 +24,7 @@ datapreprocess<-function(Express,log=F) {
 	T=100
   }else if(len>=10000){
     K=20
-	it=10
+	T=10
   }else{
 	K=20
 	T=round(len/10, digits = 0)
