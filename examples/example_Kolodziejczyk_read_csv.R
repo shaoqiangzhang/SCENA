@@ -31,8 +31,8 @@ parLapply(cl,1:5,K=20,T=100,X1=50,X2=100,X3=150,X4=200,X5=250, Express=Express,s
 stopCluster(cl)
 
 ##do consensus clustering
-cc=consClust() #no parameters if using the predicted number of clusters
-#cc=consClust(3) #set the number of clusters = 3
+cc=consClust(Express) #no parameters if using the predicted number of clusters
+#cc=consClust(Express,3) #set the number of clusters = 3
 
 ##plot scatter graph with PCA
 plotPCA(Express,cc) #  'cc' is label of the predicted clusters

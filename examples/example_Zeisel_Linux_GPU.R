@@ -25,14 +25,14 @@ Express=datapreprocess(Express,log=T)
 
 ## do clustering using GPU
 library(gpuR)
-source('./ApSpe_GPU.R') ## download the "ApSpe_GPU.R" file to the working directory, and source it 
+source('./parallelclust_gpu.R') ## download the "parallelclust_gpu.R" file to the working directory, and source it 
 detectCores()
 cl <- makeCluster(5)  # call 5 cpu cores
 parLapply(cl,1:5,K=20,T=300,X1=50,X2=100,X3=150,X4=200,X5=250,Express=Express,select_features_GPU)##see Note3
 stopCluster(cl)
 
 ##do consensus clustering
-cc=consClust() #no parameters if using the predicted number of clusters
+cc=consClust(Express) #no parameters if using the predicted number of clusters
 
 ##plot scatter graph with PCA
 plotPCA(Express,cc) 
