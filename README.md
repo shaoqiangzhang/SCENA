@@ -8,7 +8,7 @@ Depends: R(>3.6)
 
 Import packages: parallel, doParallel,foreach, SNFtool, gpuR, apcluster, mclust, ggplot2
 
-Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network Affinity, Briefings in Bioinformatics 2021, DOI: 10.1093/bib/bbab236 
+Citation: Consensus Clustering of Single-cell RNA-seq Data by Enhancing Network Affinity, *Briefings in Bioinformatics* 2021, DOI: 10.1093/bib/bbab236 
 
 # 1. Installation
 ##  Start by installing the necessary packages  
